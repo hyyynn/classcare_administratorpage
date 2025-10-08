@@ -1,0 +1,1111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #F7F7FB;
+    color: #111111;
+}
+
+/* 로그인 모달 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #767676;
+    line-height: 1;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #505050;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #E5E5EC;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #274272;
+}
+
+.login-btn {
+    padding: 14px;
+    background: linear-gradient(90deg, #171F55 0%, #274272 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+/* 헤더 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #E5E5EC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 33px;
+    z-index: 100;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+
+.user-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 14px 4px 4px;
+    background: #E9EFFB;
+    border-radius: 100px;
+    box-shadow: -1px -1px 1px white inset;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.user-badge:hover {
+    background: #dce6f7;
+}
+
+.avatar-icon {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(90deg, #171F55 0%, #274272 100%);
+    border-radius: 50%;
+    box-shadow: 0px 2px 8px rgba(38, 0, 255, 0.30);
+}
+
+.user-badge span {
+    font-size: 13px;
+    font-weight: 500;
+    color: black;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.user-info span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #505050;
+}
+
+.search-box {
+    width: 260px;
+    height: 40px;
+    background: #EBEBF1;
+    border-radius: 12px;
+    padding: 0 16px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.10) inset;
+}
+
+.search-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    color: #767676;
+}
+
+.search-box input::placeholder {
+    color: #767676;
+}
+
+.top-nav {
+    display: flex;
+    gap: 48px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #505050;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.badge {
+    padding: 2px 8px;
+    background: #E9EFFB;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #274272;
+    box-shadow: -0.5px -0.5px 1px white inset;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.icons {
+    display: flex;
+    gap: 16px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 사이드바 */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sidebar-overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    width: 260px;
+    height: calc(100vh - 80px);
+    background: white;
+    border-right: 1px solid #E5E5EC;
+    padding: 16px 0;
+    overflow-y: auto;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 17px 32px;
+    text-decoration: none;
+    color: #505050;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.menu-item:hover {
+    background: #F7F7FB;
+}
+
+.menu-item.active {
+    background: #E9EFFB;
+    color: #274272;
+    font-weight: 600;
+    margin: 0 20px;
+    border-radius: 12px;
+    box-shadow: -1px -1px 1px white inset;
+}
+
+.menu-item .icon {
+    font-size: 20px;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    margin-left: 260px;
+    margin-right: 360px;
+    margin-top: 80px;
+    padding: 32px;
+    min-height: calc(100vh - 80px);
+}
+
+/* 환영 화면 */
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 144px);
+    padding-top: 40px;
+}
+
+.welcome-content {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.welcome-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #111111;
+    margin-bottom: 16px;
+}
+
+.welcome-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #767676;
+    margin-bottom: 48px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.feature-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111111;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #767676;
+    line-height: 1.6;
+}
+
+.cta-button {
+    padding: 16px 48px;
+    background: linear-gradient(90deg, #171F55 0%, #274272 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0px 4px 16px rgba(39, 66, 114, 0.30);
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+/* 대시보드 콘텐츠 */
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #505050;
+}
+
+.subtitle {
+    font-size: 11px;
+    font-weight: 500;
+    color: #767676;
+    margin-top: 4px;
+}
+
+/* 대시보드 그리드 */
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+/* 카드 */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.card.large {
+    width: 100%;
+}
+
+.card.small {
+    width: 100%;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #111111;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+/* 피드백 통계 */
+.feedback-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat-group {
+    display: flex;
+    gap: 50px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #505050;
+}
+
+.stat-value {
+    font-size: 30px;
+    font-weight: 600;
+    color: #111111;
+}
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.stat-change.positive {
+    color: #0024D5;
+}
+
+.stat-change span {
+    color: #767676;
+}
+
+.class-stats {
+    display: flex;
+    gap: 50px;
+}
+
+.class-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stat-percentage {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+}
+
+/* 과제 제출률 */
+.assignment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.assignment-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.assignment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assignment-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.assignment-ratio {
+    font-size: 11px;
+    font-weight: 500;
+    color: #767676;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #EBE9FB;
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 1px rgba(17, 0, 116, 0.15) inset;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #171F55 0%, #6C90C3 100%);
+    border-radius: 12px 6px 6px 12px;
+    box-shadow: 0px 1px 2px rgba(38, 0, 255, 0.30);
+}
+
+/* 피드백 테이블 */
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.feedback-table th {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E5EC;
+}
+
+.feedback-table td {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    padding: 12px 0;
+}
+
+.feedback-table tr:not(:last-child) td {
+    border-bottom: 1px solid #F7F7FB;
+}
+
+/* 알림 */
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 12px;
+    background: #F7F7FB;
+    border-radius: 10px;
+}
+
+.notification-icon {
+    font-size: 20px;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.notification-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #505050;
+    margin-top: 2px;
+}
+
+/* 활동 차트 */
+.chart-filters {
+    display: flex;
+    gap: 6px;
+}
+
+.filter-btn {
+    width: 50px;
+    height: 22px;
+    background: #EBEBF1;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #767676;
+    cursor: pointer;
+    box-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.10) inset;
+}
+
+.goal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.goal-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #767676;
+}
+
+.goal-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.goal-percentage {
+    font-size: 28px;
+    font-weight: 600;
+    color: #111111;
+}
+
+.goal-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #767676;
+}
+
+.goal-chart {
+    position: relative;
+    height: 60px;
+}
+
+.goal-bar-bg {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background: #E9EFFB;
+    border-radius: 12px;
+    box-shadow: 1px 1px 1.5px rgba(13, 20, 51, 0.15) inset;
+}
+
+.goal-bar-fill {
+    position: absolute;
+    height: 60px;
+    background: linear-gradient(90deg, #171F55 0%, #274272 100%);
+    border-radius: 12px 6px 6px 12px;
+    box-shadow: 0px 4px 16px rgba(39, 66, 114, 0.30);
+    transition: width 0.3s;
+}
+
+.goal-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    color: #767676;
+}
+
+/* 오른쪽 사이드바 */
+.right-sidebar {
+    position: fixed;
+    right: 0;
+    top: 80px;
+    width: 360px;
+    height: calc(100vh - 80px);
+    background: #F1F1F5;
+    border-left: 1px solid #E5E5EC;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+.activities-section,
+.classes-section {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #505050;
+}
+
+/* 활동 리스트 */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 3px 0;
+}
+
+.activity-avatar {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    border-radius: 50%;
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #505050;
+}
+
+.activity-time {
+    font-size: 11px;
+    font-weight: 500;
+    color: #767676;
+}
+
+.activity-divider {
+    width: 1px;
+    height: 16px;
+    background: #C7C7D0;
+    margin-left: 16px;
+}
+
+/* 클래스 리스트 */
+.class-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.class-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10.5px 9px;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.class-item:hover {
+    background: #E9EFFB;
+    box-shadow: -1px -1px 1px white inset;
+}
+
+.class-item.active {
+    background: #E9EFFB;
+    box-shadow: -1px -1px 1px white inset;
+}
+
+.class-avatar {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    border-radius: 50%;
+}
+
+.class-info {
+    flex: 1;
+}
+
+.class-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #505050;
+}
+
+.class-location {
+    font-size: 11px;
+    font-weight: 500;
+    color: #767676;
+}
+
+.class-controls {
+    display: flex;
+    gap: 16px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #111111;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 1600px) {
+    .right-sidebar {
+        display: none;
+    }
+    
+    .main-content {
+        margin-right: 32px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .top-nav {
+        display: none;
+    }
+    
+    .header {
+        padding: 0 20px;
+    }
+    
+    .search-box {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .sidebar-overlay.show {
+        display: block;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        z-index: 200;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px;
+    }
+    
+    .feedback-stats {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .stat-group {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .class-stats {
+        flex-direction: row;
+    }
+    
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        font-size: 22px;
+    }
+    
+    .header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    .header-left {
+        order: 1;
+        width: 100%;
+    }
+    
+    .user-info {
+        order: 2;
+        width: 100%;
+    }
+    
+    .header-right {
+        order: 3;
+        width: auto;
+    }
+    
+    .search-box {
+        order: 5;
+        width: 100%;
+    }
+    
+    .main-content {
+        margin-top: 180px;
+        padding: 16px;
+    }
+    
+    .sidebar {
+        top: 0;
+        height: 100vh;
+        padding-top: 80px;
+    }
+    
+    .dashboard-grid {
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+    
+    .feedback-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .feedback-table thead {
+        display: none;
+    }
+    
+    .feedback-table tr {
+        display: block;
+        margin-bottom: 16px;
+        border: 1px solid #E5E5EC;
+        border-radius: 8px;
+        padding: 12px;
+        background: #F7F7FB;
+    }
+    
+    .feedback-table td {
+        display: block;
+        padding: 6px 0;
+        border: none;
+    }
+    
+    .feedback-table td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        margin-right: 8px;
+    }
+    
+    .stat-value {
+        font-size: 24px;
+    }
+    
+    .goal-percentage {
+        font-size: 24px;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-title {
+        font-size: 28px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 16px;
+    }
+    
+    .modal-content {
+        padding: 32px 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        font-size: 16px;
+    }
+    
+    .user-badge {
+        padding: 4px 10px 4px 4px;
+    }
+    
+    .user-badge span {
+        font-size: 12px;
+    }
+    
+    .avatar-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .icons {
+        gap: 12px;
+    }
+    
+    .icon-btn {
+        font-size: 18px;
+    }
+    
+    .user-info span {
+        font-size: 14px;
+    }
+    
+    .profile-img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .page-header h2 {
+        font-size: 18px;
+    }
+    
+    .card-title {
+        font-size: 15px;
+    }
+    
+    .stat-label,
+    .assignment-name,
+    .notification-title {
+        font-size: 14px;
+    }
+    
+    .stat-value {
+        font-size: 22px;
+    }
+    
+    .assignment-list {
+        gap: 12px;
+    }
+    
+    .notification-list {
+        gap: 10px;
+    }
+    
+    .goal-labels {
+        font-size: 12px;
+    }
+    
+    .welcome-title {
+        font-size: 24px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 14px;
+        margin-bottom: 32px;
+    }
+    
+    .feature-card {
+        padding: 24px 16px;
+    }
+    
+    .feature-icon {
+        font-size: 40px;
+    }
+    
+    .cta-button {
+        padding: 14px 32px;
+        font-size: 16px;
+    }
+}

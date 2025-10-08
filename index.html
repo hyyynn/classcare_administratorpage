@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Sync - 강사 대시보드</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+</head>
+<body>
+    <!-- 로그인 모달 -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">×</button>
+            <h2>로그인</h2>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="userId">아이디</label>
+                    <input type="text" id="userId" placeholder="아이디를 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">비밀번호</label>
+                    <input type="password" id="userPassword" placeholder="비밀번호를 입력하세요">
+                </div>
+                <button type="submit" class="login-btn">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <h1 class="logo">Class Sync</h1>
+            <div class="user-badge" id="authToggle">
+                <div class="avatar-icon"></div>
+                <span id="authText">login</span>
+            </div>
+        </div>
+        
+        <div class="user-info" id="userInfo">
+            <img src="https://placehold.co/32x32" alt="profile" class="profile-img">
+            <span>강경모</span>
+        </div>
+        
+        <div class="header-right">
+            <div class="icons">
+                <button class="icon-btn">🔔</button>
+                <button class="icon-btn">📋</button>
+                <button class="icon-btn">✉️</button>
+            </div>
+        </div>
+        
+        <nav class="top-nav">
+            <a href="#" class="nav-item">
+                <span>메시지</span>
+                <span class="badge">06</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>시험 내역</span>
+                <span class="badge">02</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>개인 메모</span>
+                <span class="badge">11</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>공유 메모</span>
+                <span class="badge">03</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>학원 공지</span>
+                <span class="badge">07</span>
+            </a>
+        </nav>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+        </div>
+    </header>
+
+    <!-- 사이드바 -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <a href="#" class="menu-item active">
+            <span class="icon">📊</span>
+            <span>전체 통계</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">📝</span>
+            <span>내 반 관리</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">✅</span>
+            <span>학생 출석 관리</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">📄</span>
+            <span>과제 관리</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">👥</span>
+            <span>학생 현황</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">📢</span>
+            <span>공지사항</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">📈</span>
+            <span>보고서 생성</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">💬</span>
+            <span>상담 기록</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">📁</span>
+            <span>공용 자료실</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="icon">⚙️</span>
+            <span>계정 설정</span>
+        </a>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content" id="mainContent">
+        <!-- 로그아웃 상태 화면 -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-content">
+                <h1 class="welcome-title">ClassCare에 오신 것을 환영합니다</h1>
+                <p class="welcome-subtitle">학원 강사와 학생을 위한 통합 관리 시스템</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>실시간 통계</h3>
+                        <p>학생 출석, 과제 제출률을 한눈에 확인하세요</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>화면 공유</h3>
+                        <p>강사 화면을 모든 학생에게 실시간으로 공유</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📁</div>
+                        <h3>파일 전송</h3>
+                        <p>강사-학생, 학생 간 손쉬운 파일 공유</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>출석 관리</h3>
+                        <p>자동 출석 체크 및 국비 지원 요건 관리</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>과제 관리</h3>
+                        <p>과제 등록, 제출 현황 확인 및 피드백</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>실시간 소통</h3>
+                        <p>채팅과 질문 기능으로 원활한 수업 진행</p>
+                    </div>
+                </div>
+                
+                <button class="cta-button" id="ctaLogin">로그인하고 시작하기</button>
+            </div>
+        </div>
+
+        <!-- 로그인 상태 대시보드 -->
+        <div class="dashboard-content" id="dashboardContent" style="display: none;">
+            <div class="page-header">
+                <div>
+                    <h2>강경모</h2>
+                    <p class="subtitle">강사 001</p>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- 피드백 요약 카드 -->
+                <div class="card large">
+                    <h3 class="card-title">피드백 요약</h3>
+                    <div class="feedback-stats">
+                        <div class="stat-group">
+                            <div class="stat-item">
+                                <p class="stat-label">주간</p>
+                                <p class="stat-value">총 1,563 건</p>
+                                <p class="stat-change positive">↑ 0.6% <span>Last week</span></p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-label">월간</p>
+                                <p class="stat-value">총 11,263 건</p>
+                                <p class="stat-change positive">↑ 0.8% <span>Last month</span></p>
+                            </div>
+                        </div>
+                        <div class="class-stats">
+                            <div class="class-stat">
+                                <p class="stat-label">Class A</p>
+                                <p class="stat-percentage">75%</p>
+                            </div>
+                            <div class="class-stat">
+                                <p class="stat-label">Class B</p>
+                                <p class="stat-percentage">75%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최근 과제 제출율 카드 -->
+                <div class="card small">
+                    <h3 class="card-title">최근 과제 제출률</h3>
+                    <div class="assignment-list">
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <p class="assignment-name">사용자 리서치</p>
+                                <p class="assignment-ratio">5/11</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <p class="assignment-name">UIUX 요구분석</p>
+                                <p class="assignment-ratio">9/11</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <p class="assignment-name">디자인 구성요소 응용</p>
+                                <p class="assignment-ratio">11/11</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최근 피드백 리스트 카드 -->
+                <div class="card large">
+                    <h3 class="card-title">최근 피드백 리스트</h3>
+                    <table class="feedback-table">
+                        <thead>
+                            <tr>
+                                <th>학생명</th>
+                                <th>과제명</th>
+                                <th>피드백 요약</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="학생명">나세희</td>
+                                <td data-label="과제명">UIUX 요구분석</td>
+                                <td data-label="피드백 요약">폰트 및 이미지 비율 조절, 코드 정리 필요</td>
+                            </tr>
+                            <tr>
+                                <td data-label="학생명">김동휘</td>
+                                <td data-label="과제명">사용자 리서치</td>
+                                <td data-label="피드백 요약">폰트 및 이미지 비율 조절, 코드 정리 필요</td>
+                            </tr>
+                            <tr>
+                                <td data-label="학생명">김유진</td>
+                                <td data-label="과제명">사용자 리서치</td>
+                                <td data-label="피드백 요약">폰트 및 이미지 비율 조절, 코드 정리 필요</td>
+                            </tr>
+                            <tr>
+                                <td data-label="학생명">양재영</td>
+                                <td data-label="과제명">UIUX 요구분석</td>
+                                <td data-label="피드백 요약">폰트 및 이미지 비율 조절, 코드 정리 필요</td>
+                            </tr>
+                            <tr>
+                                <td data-label="학생명">이혜지</td>
+                                <td data-label="과제명">UIUX 요구분석</td>
+                                <td data-label="피드백 요약">폰트 및 이미지 비율 조절, 코드 정리 필요</td>
+                            </tr>
+                            <tr>
+                                <td data-label="학생명">정해진</td>
+                                <td data-label="과제명">사용자 리서치</td>
+                                <td data-label="피드백 요약">폰트 및 이미지 비율 조절, 코드 정리 필요</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 알림 및 경고 카드 -->
+                <div class="card small">
+                    <h3 class="card-title">알림 및 경고</h3>
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <span class="notification-icon">📌</span>
+                            <div class="notification-content">
+                                <p class="notification-title">과제 마감 임박</p>
+                                <p class="notification-desc">UIUX 요구 분석 (3시간 후 마감)</p>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-icon">🔧</span>
+                            <div class="notification-content">
+                                <p class="notification-title">시스템 업데이트</p>
+                                <p class="notification-desc">8/5 자정 정기 점검 예정</p>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-icon">👤</span>
+                            <div class="notification-content">
+                                <p class="notification-title">신규 학생 등록</p>
+                                <p class="notification-desc">웹퍼블리셔 과정 5명 추가</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 활동 차트 카드 -->
+                <div class="card large">
+                    <div class="card-header">
+                        <h3 class="card-title">활동 차트</h3>
+                        <div class="chart-filters">
+                            <button class="filter-btn">주간</button>
+                            <button class="filter-btn">월간</button>
+                        </div>
+                    </div>
+                    <div class="goal-section">
+                        <p class="goal-label">2025년 목표</p>
+                        <div class="goal-info">
+                            <span class="goal-percentage">42%</span>
+                            <span class="goal-text">Closer to your goal</span>
+                        </div>
+                        <div class="goal-chart">
+                            <div class="goal-bar-bg"></div>
+                            <div class="goal-bar-fill" style="width: 42%"></div>
+                        </div>
+                        <div class="goal-labels">
+                            <span>0%</span>
+                            <span>20%</span>
+                            <span>40%</span>
+                            <span>60%</span>
+                            <span>80%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 오른쪽 사이드바 -->
+    <aside class="right-sidebar">
+        <div class="activities-section">
+            <div class="section-header">
+                <h3>Activities</h3>
+                <button class="icon-btn">→</button>
+            </div>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-avatar"></div>
+                    <div class="activity-info">
+                        <p class="activity-name">나세희</p>
+                        <p class="activity-time">방금 전</p>
+                    </div>
+                </div>
+                <div class="activity-divider"></div>
+                <div class="activity-item">
+                    <div class="activity-avatar"></div>
+                    <div class="activity-info">
+                        <p class="activity-name">김동휘</p>
+                        <p class="activity-time">5분 전</p>
+                    </div>
+                </div>
+                <div class="activity-divider"></div>
+                <div class="activity-item">
+                    <div class="activity-avatar"></div>
+                    <div class="activity-info">
+                        <p class="activity-name">김유진</p>
+                        <p class="activity-time">21분 전</p>
+                    </div>
+                </div>
+                <div class="activity-divider"></div>
+                <div class="activity-item">
+                    <div class="activity-avatar"></div>
+                    <div class="activity-info">
+                        <p class="activity-name">양재영</p>
+                        <p class="activity-time">28분 전</p>
+                    </div>
+                </div>
+                <div class="activity-divider"></div>
+                <div class="activity-item">
+                    <div class="activity-avatar"></div>
+                    <div class="activity-info">
+                        <p class="activity-name">이혜지</p>
+                        <p class="activity-time">39분 전</p>
+                    </div>
+                </div>
+                <div class="activity-divider"></div>
+                <div class="activity-item">
+                    <div class="activity-avatar"></div>
+                    <div class="activity-info">
+                        <p class="activity-name">정해진</p>
+                        <p class="activity-time">1시간 전</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="classes-section">
+            <div class="section-header">
+                <h3>My Classes</h3>
+            </div>
+            <div class="class-list">
+                <div class="class-item">
+                    <div class="class-avatar"></div>
+                    <div class="class-info">
+                        <p class="class-name">포토샵 저녁반 (월/수/금)</p>
+                        <p class="class-location">본관 501호</p>
+                    </div>
+                    <button class="icon-btn">→</button>
+                </div>
+                <div class="class-item">
+                    <div class="class-avatar"></div>
+                    <div class="class-info">
+                        <p class="class-name">웹디자인 주말 오전반</p>
+                        <p class="class-location">별관 407호</p>
+                    </div>
+                    <button class="icon-btn">→</button>
+                </div>
+                <div class="class-item active">
+                    <div class="class-avatar"></div>
+                    <div class="class-info">
+                        <p class="class-name">웹디자인&퍼블리셔 종일반</p>
+                        <p class="class-location">별관 408호</p>
+                    </div>
+                    <div class="class-controls">
+                        <button class="control-btn">•••</button>
+                    </div>
+                </div>
+                <div class="class-item">
+                    <div class="class-avatar"></div>
+                    <div class="class-info">
+                        <p class="class-name">일러스트 저녁반 (화/목)</p>
+                        <p class="class-location">본관 506호</p>
+                    </div>
+                    <button class="icon-btn">→</button>
+                </div>
+                <div class="class-item">
+                    <div class="class-avatar"></div>
+                    <div class="class-info">
+                        <p class="class-name">웹디자인 주말 오후반</p>
+                        <p class="class-location">별관 406호</p>
+                    </div>
+                    <button class="icon-btn">→</button>
+                </div>
+                <div class="class-item">
+                    <div class="class-avatar"></div>
+                    <div class="class-info">
+                        <p class="class-name">웹디자인&퍼블리셔 특강반</p>
+                        <p class="class-location">별관 408호</p>
+                    </div>
+                    <button class="icon-btn">→</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        // 로그인 상태 관리
+        let isLoggedIn = false;
+
+        // DOM 요소
+        const authToggle = document.getElementById('authToggle');
+        const authText = document.getElementById('authText');
+        const userInfo = document.getElementById('userInfo');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+        const loginForm = document.getElementById('loginForm');
+        const ctaLogin = document.getElementById('ctaLogin');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const sidebar = document.getElementById('sidebar');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const rightSidebar = document.querySelector('.right-sidebar');
+        const mainContent = document.getElementById('mainContent');
+
+        // 초기 상태 설정 (로그아웃)
+        updateUIState();
+
+        // 로그인/로그아웃 토글
+        authToggle.addEventListener('click', () => {
+            if (isLoggedIn) {
+                // 로그아웃
+                isLoggedIn = false;
+                updateUIState();
+            } else {
+                // 로그인 모달 열기
+                loginModal.style.display = 'flex';
+            }
+        });
+
+        // CTA 버튼 클릭
+        ctaLogin.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        // 모달 닫기
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        // 모달 외부 클릭 시 닫기
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // 로그인 폼 제출
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // 실제로는 서버 인증 필요
+            isLoggedIn = true;
+            loginModal.style.display = 'none';
+            updateUIState();
+        });
+
+        // UI 상태 업데이트
+        function updateUIState() {
+            if (isLoggedIn) {
+                // 로그인 상태
+                authText.textContent = 'logout';
+                userInfo.style.display = 'flex';
+                welcomeScreen.style.display = 'none';
+                dashboardContent.style.display = 'block';
+                rightSidebar.style.display = 'block';
+                
+                // 메인 콘텐츠 마진 조정
+                if (window.innerWidth > 1600) {
+                    mainContent.style.marginRight = '360px';
+                }
+                
+                // 사이드바 메뉴 활성화
+                menuItems.forEach(item => {
+                    item.style.pointerEvents = 'auto';
+                    item.style.opacity = '1';
+                });
+            } else {
+                // 로그아웃 상태
+                authText.textContent = 'login';
+                userInfo.style.display = 'none';
+                welcomeScreen.style.display = 'block';
+                dashboardContent.style.display = 'none';
+                rightSidebar.style.display = 'none';
+                mainContent.style.marginRight = '32px';
+                
+                // 사이드바 메뉴 비활성화
+                menuItems.forEach(item => {
+                    item.style.pointerEvents = 'none';
+                    item.style.opacity = '0.5';
+                });
+            }
+        }
+
+        // 모바일 메뉴 토글
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            sidebarOverlay.classList.toggle('show');
+        });
+        
+        // 오버레이 클릭 시 사이드바 닫기
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            sidebarOverlay.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
