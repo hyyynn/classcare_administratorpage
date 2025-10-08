@@ -410,6 +410,7 @@
         <div class="classes-section">
             <div class="section-header">
                 <h3>My Classes</h3>
+                <button class="icon-btn">→</button>
             </div>
             <div class="class-list">
                 <div class="class-item">
@@ -418,7 +419,8 @@
                         <p class="class-name">포토샵 저녁반 (월/수/금)</p>
                         <p class="class-location">본관 501호</p>
                     </div>
-                    <button class="icon-btn">→</button>
+                    <button class="arrow-btn">→</button>
+                    <button class="control-btn">•••</button>
                 </div>
                 <div class="class-item">
                     <div class="class-avatar"></div>
@@ -426,7 +428,8 @@
                         <p class="class-name">웹디자인 주말 오전반</p>
                         <p class="class-location">별관 407호</p>
                     </div>
-                    <button class="icon-btn">→</button>
+                    <button class="arrow-btn">→</button>
+                    <button class="control-btn">•••</button>
                 </div>
                 <div class="class-item active">
                     <div class="class-avatar"></div>
@@ -434,9 +437,8 @@
                         <p class="class-name">웹디자인&퍼블리셔 종일반</p>
                         <p class="class-location">별관 408호</p>
                     </div>
-                    <div class="class-controls">
-                        <button class="control-btn">•••</button>
-                    </div>
+                    <button class="arrow-btn">→</button>
+                    <button class="control-btn">•••</button>
                 </div>
                 <div class="class-item">
                     <div class="class-avatar"></div>
@@ -444,7 +446,8 @@
                         <p class="class-name">일러스트 저녁반 (화/목)</p>
                         <p class="class-location">본관 506호</p>
                     </div>
-                    <button class="icon-btn">→</button>
+                    <button class="arrow-btn">→</button>
+                    <button class="control-btn">•••</button>
                 </div>
                 <div class="class-item">
                     <div class="class-avatar"></div>
@@ -452,7 +455,8 @@
                         <p class="class-name">웹디자인 주말 오후반</p>
                         <p class="class-location">별관 406호</p>
                     </div>
-                    <button class="icon-btn">→</button>
+                    <button class="arrow-btn">→</button>
+                    <button class="control-btn">•••</button>
                 </div>
                 <div class="class-item">
                     <div class="class-avatar"></div>
@@ -460,7 +464,8 @@
                         <p class="class-name">웹디자인&퍼블리셔 특강반</p>
                         <p class="class-location">별관 408호</p>
                     </div>
-                    <button class="icon-btn">→</button>
+                    <button class="arrow-btn">→</button>
+                    <button class="control-btn">•••</button>
                 </div>
             </div>
         </div>
@@ -520,7 +525,6 @@
         // 로그인 폼 제출
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // 실제로는 서버 인증 필요
             isLoggedIn = true;
             loginModal.style.display = 'none';
             updateUIState();
@@ -576,6 +580,26 @@
         sidebarOverlay.addEventListener('click', () => {
             sidebar.classList.remove('show');
             sidebarOverlay.classList.remove('show');
+        });
+
+        // 클래스 아이템 클릭 이벤트
+        const classItems = document.querySelectorAll('.class-item');
+        
+        classItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // 버튼 클릭은 무시 (나중에 별도 기능 추가 가능)
+                if (e.target.classList.contains('arrow-btn') || e.target.classList.contains('control-btn')) {
+                    return;
+                }
+                
+                // 모든 아이템에서 active 제거
+                classItems.forEach(classItem => {
+                    classItem.classList.remove('active');
+                });
+                
+                // 클릭된 아이템에 active 추가
+                item.classList.add('active');
+            });
         });
     </script>
 </body>

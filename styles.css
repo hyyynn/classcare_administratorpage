@@ -330,6 +330,7 @@ body {
     width: 100%;
     max-width: 900px;
     text-align: center;
+    margin: 0 auto;
 }
 
 .welcome-title {
@@ -838,12 +839,27 @@ body {
     gap: 16px;
 }
 
+.arrow-btn,
 .control-btn {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 16px;
     color: #111111;
+}
+
+.control-btn {
+    display: none;
+}
+
+.class-item:hover .arrow-btn,
+.class-item.active .arrow-btn {
+    display: none;
+}
+
+.class-item:hover .control-btn,
+.class-item.active .control-btn {
+    display: block;
 }
 
 /* 반응형 디자인 */
